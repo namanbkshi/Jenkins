@@ -60,11 +60,11 @@ pipeline {
             }
         }
 
-        stage('Integration Tests on Staging') {
-            steps {
-                echo 'Integration Testing Tool (on staging): Selenium'
-            }
-        }
+  //      stage('Integration Tests on Staging') {
+    //        steps {
+     //           echo 'Integration Testing Tool (on staging): Selenium'
+        //    }
+       // }
 
         stage('Deploy to Production') {
             steps {
