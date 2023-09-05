@@ -39,17 +39,25 @@ pipeline {
         }
     }
     post {
-        success {           
-            emailext subject: 'Pipeline Successful',
-                body: 'The Jenkins pipeline has success.',
-                to: 'namanbakshi1@gmail.com'
-                
+        always {
+            script {
+                currentBuild.result = 'SUCCESS'
+                if (currentBuild.currentResultIsWorseThan(Result.SUCCESS)) {
+                    currentBuild.result = 'FAILURE'
+                }
+            }
         }
-        failure {           
-            emailext subject: 'Pipeline Failed',
-                body: 'The Jenkins pipeline failed.',
-                to: 'namanbakshi1@gmail.com'
-                
+        failure {        
+            emailext subject: "Pipeline Failed - ${currentBuild.result}",
+                body: 'The Jenkins pipeline has failed. Please check the logs for details.',
+                to: 'namanbakshi1@gmail.com',
+                attachmentsPattern: '**/build.log'
+        }
+        success {
+            emailext subject: "Pipeline Successful - ${currentBuild.result}",
+                body: 'The Jenkins pipeline has completed successfully.',
+                to: 'namanbakshi1@gmail.com',
+                attachmentsPattern: '**/build.log'
         }
     }
 }
