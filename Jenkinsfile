@@ -43,13 +43,13 @@ pipeline {
             emailext subject: 'Pipeline Successful',
                 body: 'The Jenkins pipeline has success.',
                 to: 'namanbakshi1@gmail.com',
-                attachmentsPattern: '**/build.log'
+                
         }
         failure {           
             emailext subject: 'Pipeline Failed',
                 body: 'The Jenkins pipeline failed.',
                 to: 'namanbakshi1@gmail.com',
-                attachmentsPattern: '**/build.log'
+                
         }
     }
 }
