@@ -16,16 +16,16 @@ pipeline {
                 success {
                     mail to: "namanbakshi1@gmail.com",
                         subject: "Unit and Integration Tests are succesful",
-                        body: "Successful",
-                        attachments: '**/*.log'
+                        body: "Successful"
+                       
                         
                     
                 }
                 failure {
                     mail to: "namanbakshi1@gmail.com",
                         subject: "Unit and Integration Tests have failed",
-                        body: "Fail",
-                        attachments: '**/*.log'
+                        body: "Fail"
+                       
                     
                 }
             }
@@ -42,17 +42,17 @@ pipeline {
                 echo 'Security Scanning Tool: OWASP ZAP'
             }
             post {
-                success {
-                    mail to: "namanbakshi1@gmail.com",
-                        subject: "Security scan is sucessful",
-                        body: "Successful"
-                        
-                    
+                 success {
+                    emailext subject: "Unit and Integration Tests are successful",
+                        body: "Successful",
+                        to: "namanbakshi1@gmail.com",
+                        attachLog: true  // Attach build log to email
                 }
                 failure {
-                    mail to: "namanbakshi1@gmail.com",
-                        subject: "Security Scan failed",
-                        body: "Fail"
+                    emailext subject: "Unit and Integration Tests have failed",
+                        body: "Fail",
+                        to: "namanbakshi1@gmail.com",
+                        attachLog: true  // Attach build log to email
                 }
             }
         }
