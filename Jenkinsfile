@@ -16,7 +16,7 @@ pipeline {
                 success {
                     mail to: "namanbakshi1@gmail.com",
                         subject: "Unit and Integration Tests are succesful",
-                        body: "Successful"
+                        body: "Successful",
                         attachments: '**/*.log'
                         
                     
@@ -24,7 +24,7 @@ pipeline {
                 failure {
                     mail to: "namanbakshi1@gmail.com",
                         subject: "Unit and Integration Tests have failed",
-                        body: "Fail"
+                        body: "Fail",
                         attachments: '**/*.log'
                     
                 }
